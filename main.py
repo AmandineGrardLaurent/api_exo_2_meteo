@@ -1,16 +1,39 @@
-# This is a sample Python script.
+from datetime import datetime
+import requests
+import os
+from dotenv import load_dotenv
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+load_dotenv()
 
+api_key = os.getenv("API_KEY")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+weather_merignac = requests.get(
+    f'http://api.openweathermap.org/data/2.5/forecast?lat=44.8448769&lon=-0.656358&lang=fr&units=metric&appid={api_key}')
+weather_toulouse = requests.get(
+    f'http://api.openweathermap.org/data/2.5/forecast?lat=43.604652&lon=1.444209&lang=fr&units=metric&appid={api_key}')
+weather_stgeours = requests.get(
+    f'http://api.openweathermap.org/data/2.5/forecast?lat=48.862725&lon=2.287592&lang=fr&units=metric&appid={api_key}')
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    #print(weather_merignac.json()['list'])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print('--- La Méthode à Mérignac ---')
+    for item in weather_merignac.json()['list']:
+        print(f'Date : {datetime.fromtimestamp(item['dt'])}')
+        print(f'Temperature : {item['main']['temp']}°C')
+        print(f'Temperature min : {item['main']['temp_min']}°C')
+        print(f'Temperature max : {item['main']['temp_max']}°C')
+
+    print('--- La Méthode à Toulouse ---')
+    for item in weather_toulouse.json()['list']:
+        print(f'Date : {datetime.fromtimestamp(item['dt'])}')
+        print(f'Temperature : {item['main']['temp']}°C')
+        print(f'Temperature min : {item['main']['temp_min']}°C')
+        print(f'Temperature max : {item['main']['temp_max']}°C')
+
+    print('--- La Méthode à Saint-Geours-de-Maremne ---')
+    for item in weather_stgeours.json()['list']:
+        print(f'Date : {datetime.fromtimestamp(item['dt'])}')
+        print(f'Temperature : {item['main']['temp']}°C')
+        print(f'Temperature min : {item['main']['temp_min']}°C')
+        print(f'Temperature max : {item['main']['temp_max']}°C')
