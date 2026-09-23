@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Météo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-pink-50 text-slate-800 min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-pink-100">
+
+        <h1 class="text-2xl font-bold text-center text-pink-700 mb-6">Application Météo</h1>
+
+        <!-- Liste déroulante -->
+        <div class="mb-6">
+            <select name="city" id="city" class="w-full p-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 bg-white text-pink-950 transition duration-150">
+                <option value="" selected disabled>Sélectionner une ville</option>
+                <option value="merignac">Mérignac</option>
+                <option value="st_geours">Saint-Geours-De-Maremne</option>
+                <option value="toulouse">Toulouse</option>
+            </select>
+        </div>
+
+        <div id="weather" class="space-y-3 max-h-96 overflow-y-auto pr-2">
+            <!-- L'affichage de la météo de la ville sélectionnée -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
